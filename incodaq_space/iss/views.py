@@ -10,5 +10,3 @@ def iss_crew_api():
     #save data to iss_crew model
     for x in iss_crew_data["people"]:
         iss_crew.objects.create(name=x["name"], craft=x["craft"])
-
-    #TODO process data from make_iss_api_call?
