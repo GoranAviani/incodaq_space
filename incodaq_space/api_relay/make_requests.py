@@ -9,6 +9,21 @@ def make_iss_api_call(**kwargs):
         #return error message
 
     if call_source == "iss_crew_data":
-        result = requests.get("http://api.open-notify.org/astros.json")
-        print (result.json())
+        try:
+            result = requests.get("http://api.open-notify.org/astros.json")
+        except:
+            pass
+            #TODO log faiulre to make a call
+            #return error message or exit fun
 
+
+    try:
+        #if the call was succesfull the result var will exist
+        if result.status_code == 200:
+            return result.json()
+        else:
+            pass
+            #TODO log that call had a failure
+            #return error message or exit fun
+    except:
+        pass
