@@ -20,5 +20,5 @@ from . import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.index, name='index'),
-    path('iss', views.iss, name='iss'),
+    path('international_space_station', views.iss, name='iss'),
 ]
