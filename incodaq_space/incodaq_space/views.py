@@ -5,6 +5,8 @@ from iss.models import iss_crew
 def get_iss_crew_info():
    result = []
    try:
+      lastRec = iss_crew.objects.last()
+      lastRecDateTime = lastRec.datetime
       foundISSCrew = iss_crew.objects.all()
       for x in foundISSCrew:
          # {'city': city, 'temp': processedTemp, 'iconDesc': processedIconText}
