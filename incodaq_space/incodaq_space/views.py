@@ -23,4 +23,6 @@ def iss(request):
 
     iss_crew_info = get_iss_crew_info()
     print(iss_crew_info)
-    return render(request, 'iss.html')
+    return render(request, 'iss.html',
+            {'iss_crew_info': iss_crew_info,}
+            )

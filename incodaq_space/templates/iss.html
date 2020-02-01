@@ -6,5 +6,10 @@
 </head>
 <body>
 iss page
+{% for x in iss_crew_info %}
+    {{ x.name }}
+    {{ x.craft }}
+    -----------------
+{% endfor %}
 </body>
 </html>
