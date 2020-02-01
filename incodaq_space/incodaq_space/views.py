@@ -2,11 +2,15 @@ from django.shortcuts import render, redirect
 from iss.views import iss_crew_api
 from iss.models import iss_crew
 
+#from datetime import datetime, timedelta
+
 def get_iss_crew_info():
    result = []
    try:
       lastRec = iss_crew.objects.last()
       lastRecDateTime = lastRec.datetime
+#      time_threshold = lastRecDateTime - timedelta(hours=1)
+
       foundISSCrew = iss_crew.objects.all()
       for x in foundISSCrew:
          # {'city': city, 'temp': processedTemp, 'iconDesc': processedIconText}
