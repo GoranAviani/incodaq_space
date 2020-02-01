@@ -37,6 +37,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+
+    'iss.apps.IssConfig',
+    'api_relay.apps.ApiRelayConfig',
 ]
 
 MIDDLEWARE = [
