@@ -1,7 +1,7 @@
 from django.contrib import admin
 
 # Register your models here.
-from .models import iss_crew, iss_crew_model
+from .models import iss_crew_model, iss_crew_model
 
 class iss_crew_model_admin (admin.ModelAdmin):
     model = iss_crew_model

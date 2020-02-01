@@ -10,6 +10,6 @@ class iss_crew(models.Model):
 
 
 
-#class iss_crew_model(models.Model):
-#    iss_crew_json = JSONField()
-#    datetime = models.DateTimeField(default=datetime.datetime.utcnow)
+class iss_crew_model(models.Model):
+    iss_crew_json = models.CharField(max_length=15000, null=True, blank=True)
+    datetime = models.DateTimeField(default=datetime.datetime.utcnow)
