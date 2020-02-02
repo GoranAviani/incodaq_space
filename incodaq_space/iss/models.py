@@ -13,3 +13,7 @@ class iss_crew(models.Model):
 class iss_crew_model(models.Model):
     iss_crew_json = models.CharField(max_length=15000, null=True, blank=True)
     datetime = models.DateTimeField(default=datetime.datetime.utcnow)
+
+class iss_location_now_model(models.Model):
+    iss_location_now_json = models.CharField(max_length=15000, null=True, blank=True)
+    datetime = models.DateTimeField(default=datetime.datetime.utcnow)
