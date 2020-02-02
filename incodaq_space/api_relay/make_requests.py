@@ -16,6 +16,13 @@ def make_iss_api_call(**kwargs):
             #TODO log faiulre to make a call
             #return error message or exit fun
 
+    if call_source == "iss_location_now":
+        try:
+            result = requests.get("http://api.open-notify.org/iss-now.json")
+        except:
+            pass
+            #TODO log faiulre to make a call
+            #return error message or exit fun
 
     try:
         #if the call was succesfull the result var will exist

@@ -11,3 +11,11 @@ def iss_crew_api():
 
     #save data to iss_crew model
     iss_crew_model.objects.create(iss_crew_json= issCrewDataString)
+
+def iss_location_api():
+    callSource = {"call_source": "iss_location_now"}
+    issLocationNow = make_iss_api_call(**callSource)
+    issLocationNowString = json.dumps(issLocationNow) #save json as string
+
+    #save data to iss_crew model
+    iss_location_now_model.objects.create(iss_location_now_json= issLocationNowString)
