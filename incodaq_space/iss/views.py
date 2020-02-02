@@ -1,7 +1,13 @@
 from django.shortcuts import render
 from api_relay.make_requests import make_iss_api_call
 # Create your views here.
+from .models import iss_crew_model
+import json
+
 def iss_crew_api():
-    call_source = {"call_source": "iss_crew_data"}
-    iss_crew_data = make_iss_api_call(**call_source)
-    #TODO process data from make_iss_api_call?
+    callSource = {"call_source": "iss_crew_data"}
+    issCrewData = make_iss_api_call(**callSource)
+    issCrewData = json.dumps(issCrewData) #save json as string
+
+    #save data to iss_crew model
+    iss_crew_model.objects.create(iss_crew_json= issCrewData)
