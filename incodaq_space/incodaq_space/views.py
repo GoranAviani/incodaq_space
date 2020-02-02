@@ -1,19 +1,19 @@
 from django.shortcuts import render, redirect
 from iss.views import iss_crew_api
 from iss.models import iss_crew_model
-
+import json
 #from datetime import datetime, timedelta
 
 def get_iss_crew_info():
-   result = []
    try:
-      lastRec = iss_crew_model.objects.last()
+      lastISSCrewDataRec = iss_crew_model.objects.last()
+      lastISSCrewDataRec = json.loads(lastISSCrewDataRec.iss_crew_json)
+      IssCrewData = lastISSCrewDataRec["people"]
 
-      for x in lastRec.iss_crew_json["people"]:
-         result.append({'name': x.name, 'craft': x.craft})
-      return result
+
+      return IssCrewData
    except:
-      return result
+      return [{'name': "Something went wrong with fetching crew data", "craft": ""}]
 
 def index(request):
 
