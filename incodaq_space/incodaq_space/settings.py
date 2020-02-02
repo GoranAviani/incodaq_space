@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
-
+from celery.schedules import crontab
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -131,3 +131,15 @@ if DEBUG == True:
 else:
     PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
     STATIC_ROOT = os.path.join(PROJECT_ROOT, 'static')
+
+# beat settings
+CELERY_BEAT_SCHEDULE = {
+    'task-save-iss-crew-info': {
+        'task': 'iss.tasks.save_iss_crew_info',
+         'schedule': 30,
+       # 'schedule': crontab(minute=10, hour='8,18')
+
+    },
+
+
+}
