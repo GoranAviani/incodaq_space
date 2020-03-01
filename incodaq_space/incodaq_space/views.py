@@ -9,8 +9,6 @@ def get_iss_crew_info():
       lastISSCrewDataRec = iss_crew_model.objects.last()
       lastISSCrewDataRec = json.loads(lastISSCrewDataRec.iss_crew_json)
       IssCrewData = lastISSCrewDataRec["people"]
-
-
       return IssCrewData
    except:
       return [{'name': "Something went wrong with fetching ISS crew data", "craft": ""}]
@@ -20,11 +18,10 @@ def get_iss_location_now_info():
       lastISSLocationDataRec = iss_location_now_model.objects.last()
       lastISSLocationDataRec = json.loads(lastISSLocationDataRec.iss_location_now_json)
       IssLocationData = lastISSLocationDataRec
-
-
       return IssLocationData
    except:
       return [{'name': "Something went wrong with fetching ISS location data", "craft": ""}]
+
 def index(request):
 
     return render(request,'index.html')
