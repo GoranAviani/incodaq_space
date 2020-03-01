@@ -9,19 +9,19 @@ def make_iss_api_call(**kwargs):
         #return error message
 
     if call_source == "iss_crew_names":
+        result = requests.get("http://api.open-notify.org/astros.json")
         try:
-            result = requests.get("http://api.open-notify.org/astros.json")
-        except:
-            pass
-            #TODO log faiulre to make a call
-            #return error message or exit fun
+            result.raise_for_status()
+        except requests.exceptions.HTTPError as e:
+            # Whoops it wasn't a 200
+            return result.status_code, "Error: " + str(e)
 
     elif call_source == "iss_location_now":
+        result = requests.get("http://api.open-notify.org/iss-now.json1")
         try:
-            result = requests.get("http://api.open-notify.org/iss-now.json")
-        except:
-            pass
-            #TODO log faiulre to make a call
-            #return error message or exit fun
+            result.raise_for_status()
+        except requests.exceptions.HTTPError as e:
+            # Whoops it wasn't a 200
+            return result.status_code, "Error: " + str(e)
 
     return result.status_code, result.json()
