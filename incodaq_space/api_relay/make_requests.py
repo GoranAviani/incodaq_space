@@ -17,7 +17,7 @@ def make_iss_api_call(**kwargs):
             return result.status_code, "Error: " + str(e)
 
     elif call_source == "iss_location_now":
-        result = requests.get("http://api.open-notify.org/iss-now.json1")
+        result = requests.get("http://api.open-notify.org/iss-now.json")
         try:
             result.raise_for_status()
         except requests.exceptions.HTTPError as e:
