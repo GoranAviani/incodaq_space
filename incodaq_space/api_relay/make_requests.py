@@ -10,7 +10,8 @@ def make_iss_api_call(**kwargs):
 
     if call_source == "iss_crew_names":
         try:
-            result = requests.get("http://api.open-notify.org/astros.json")
+            result = requests.get("http://api.open-notify.org/astros.json1")
+            result.raise_for_status()
         except requests.exceptions.Timeout:
         # Maybe set up for a retry, or continue in a retry loop
             return "error", "The call had timeout"
@@ -20,12 +21,11 @@ def make_iss_api_call(**kwargs):
         except requests.exceptions.RequestException as e:
             return "error", "Other error"
             # catastrophic error. bail.
-
-        #try:
-        #    result.raise_for_status()
-        #except requests.exceptions.HTTPError as e:
-        #    # Whoops it wasn't a 200
-        #    return result.status_code, {'name': "Error: " + str(e)} #TODO fix json
+        try:
+            result.raise_for_status()
+        except requests.exceptions.HTTPError as e:
+            # Whoops it wasn't a 200
+            return result.status_code, {'name': "Error: " + str(e)} #TODO fix json
 
     elif call_source == "iss_location_now":
         result = requests.get("http://api.open-notify.org/iss-now.json")

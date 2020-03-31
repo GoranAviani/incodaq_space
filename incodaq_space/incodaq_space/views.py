@@ -28,7 +28,7 @@ def index(request):
 
 
 def iss(request):
-    #iss_crew_api() #TODO to be moved to clery
+    iss_crew_api() #TODO to be moved to clery
 
     iss_crew_info = get_iss_crew_info()
     iss_location_now_info = get_iss_location_now_info()
