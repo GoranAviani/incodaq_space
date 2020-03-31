@@ -19,7 +19,7 @@ def make_iss_api_call(**kwargs):
         # Tell the user their URL was bad and try a different one
             return "error", "Too many redirects"
         except requests.exceptions.RequestException as e:
-            return "error", "Other error"
+            return "error", "Error: {} ,in iss_crew_names" .format(result.status_code)
             # catastrophic error. bail.
 
     elif call_source == "iss_location_now":
