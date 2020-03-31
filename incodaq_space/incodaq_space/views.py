@@ -29,7 +29,7 @@ def index(request):
 
 def iss(request):
     iss_crew_api() #TODO to be moved to clery
-    iss_location_api()
+    #iss_location_api()
 
 
 

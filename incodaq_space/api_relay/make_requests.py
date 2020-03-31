@@ -10,7 +10,7 @@ def make_iss_api_call(**kwargs):
 
     if call_source == "iss_crew_names":
         try:
-            result = requests.get("http://api.open-notify.org/astros.json")
+            result = requests.get("http://api.open-notify.org/astros.json1")
             result.raise_for_status()
         except requests.exceptions.Timeout:
         # Maybe set up for a retry, or continue in a retry loop

@@ -3,7 +3,7 @@ from api_relay.make_requests import make_iss_api_call
 # Create your views here.
 from .models import iss_crew_model, iss_location_now_model
 import json
-from incodaq_space.incodaq_space.logging_is import api_errors
+from incodaq_space.logging_is import api_errors
 
 def iss_crew_api():
     callSource = {"call_source": "iss_crew_names"}
