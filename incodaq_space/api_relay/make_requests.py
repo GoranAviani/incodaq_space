@@ -1,40 +1,38 @@
 import requests
+from incodaq_space.logging_is import api_errors
+
+def retrieve_iss_crew_names(**kwargs):
+    try:
+        result = requests.get("http://api.open-notify.org/astros.json")
+        result.raise_for_status()
+    except requests.exceptions.HTTPError as e:
+        status_code = result.status_code
+        api_errors.error("{}".format("status code: {},error: {}".format(status_code, e)))
+    except requests.exceptions.RequestException as e:
+        api_errors.error("{}".format(e))
+    return result
+
+def retrieve_iss_location_now(**kwargs):
+    try:
+        result = requests.get("http://api.open-notify.org/iss-now.json")
+        result.raise_for_status()
+    except requests.exceptions.HTTPError as e:
+        status_code = result.status_code
+        api_errors.error("{}".format( "status code: {},error: {}".format(status_code, e)))
+    except requests.exceptions.RequestException as e:
+        api_errors.error("{}".format(e))
+    return result
 
 def make_iss_api_call(**kwargs):
+    api_functions = {
+        "iss_crew_names": retrieve_iss_crew_names,
+        "iss_location_now": retrieve_iss_location_now,
+    }
     try:
         call_source = kwargs["call_source"]
-    except:
-        pass
-        #TODO log failure to retrieve call_source
-        #return error message
+    except KeyError as e:
+        api_errors.error("{}".format("Location: make_iss_api_call. Field producing error: {}" .format(e)))
 
-    if call_source == "iss_crew_names":
-        try:
-            result = requests.get("http://api.open-notify.org/astros.json1")
-            result.raise_for_status()
-        except requests.exceptions.Timeout:
-        # Maybe set up for a retry, or continue in a retry loop
-            return "error", "The call had timeout"
-        except requests.exceptions.TooManyRedirects:
-        # Tell the user their URL was bad and try a different one
-            return "error", "Too many redirects"
-        except requests.exceptions.RequestException as e:
-            return "error", "Error: {} ,in iss_crew_names" .format(result.status_code)
-            # catastrophic error. bail.
-
-    elif call_source == "iss_location_now":
-        try:
-            result = requests.get("http://api.open-notify.org/iss-now.json")
-            result.raise_for_status()
-        except requests.exceptions.Timeout:
-        # Maybe set up for a retry, or continue in a retry loop
-            return "error", "The call had timeout"
-        except requests.exceptions.TooManyRedirects:
-        # Tell the user their URL was bad and try a different one
-            return "error", "Too many redirects"
-        except requests.exceptions.RequestException as e:
-            return "error", "Other error"
-            # catastrophic error. bail.
-
-
-    return result.status_code, result.json()
+    #returns result object if response status code is 200
+    result = api_functions[call_source](**kwargs)
+    return result
