@@ -3,14 +3,15 @@ from incodaq_space.logging_is import api_errors
 
 def retrieve_iss_crew_names(**kwargs):
     try:
-        result = requests.get("http://api.open-notify.org/astros.json")
+        result = requests.get("http://api.open-notify.org/astros.json21123")
+        result.raise_for_status()
     except requests.exceptions.HTTPError as e:
         status_code = result.status_code
         return "error", "status code: {},error: {}".format(status_code, e)
     except requests.exceptions.RequestException as e:
         return "error", "RequestException: {}".format(e)
     #finally: ?
-    return "succes", result
+    return "success", result
 
 def retrieve_iss_location_now(**kwargs):
     pass
@@ -22,9 +23,9 @@ def make_iss_api_call(**kwargs):
     }
 
     try:
-        call_source = kwargs["call_source1"]
+        call_source = kwargs["call_source"]
     except KeyError as e:
-        return "error", "Location: make_iss_api_call. Field producing error: {}" .format(e)
+        api_errors.error("{}".format("Location: make_iss_api_call. Field producing error: {}" .format(e)))
 
     result_status, result = api_functions[call_source](**kwargs)
     if result_status == "success":
