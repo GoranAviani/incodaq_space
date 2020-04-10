@@ -9,6 +9,7 @@ def retrieve_iss_crew_names(**kwargs):
     except requests.exceptions.RequestException as e:
         return "error", "RequestException: {}".format(e)
         # catastrophic error. bail.
+    #finally: ?
     return "success", result
 
 def retrieve_iss_location_now(**kwargs):
@@ -21,12 +22,12 @@ def make_iss_api_call(**kwargs):
     }
 
     try:
-        call_source = kwargs["call_source"]
+        call_source = kwargs["call_source1"]
     except KeyError as e:
-        return "error", e
+        return "error", "Location: make_iss_api_call. Field producing error: {}" .format(e)
 
     result_status, result = api_functions[call_source](**kwargs)
-    ###
+    return result_status, result
 
 
     if call_source == "iss_location_now":
