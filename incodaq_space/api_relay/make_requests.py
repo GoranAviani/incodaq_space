@@ -3,10 +3,8 @@ import requests
 def make_iss_api_call(**kwargs):
     try:
         call_source = kwargs["call_source"]
-    except:
-        pass
-        #TODO log failure to retrieve call_source
-        #return error message
+    except KeyError as e:
+        return "error", e
 
     if call_source == "iss_crew_names":
         try:
