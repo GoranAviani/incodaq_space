@@ -1,4 +1,5 @@
 import requests
+from incodaq_space.logging_is import api_errors
 
 def retrieve_iss_crew_names(**kwargs):
     try:
@@ -10,7 +11,7 @@ def retrieve_iss_crew_names(**kwargs):
         return "error", "RequestException: {}".format(e)
         # catastrophic error. bail.
     #finally: ?
-    return "success", result
+    return "succes", result
 
 def retrieve_iss_location_now(**kwargs):
     pass
@@ -27,7 +28,10 @@ def make_iss_api_call(**kwargs):
         return "error", "Location: make_iss_api_call. Field producing error: {}" .format(e)
 
     result_status, result = api_functions[call_source](**kwargs)
-    return result_status, result
+    if result_status == "success":
+        return result
+    else:
+        api_errors.error("{}".format(issCrewDataResult))
 
 
     if call_source == "iss_location_now":
