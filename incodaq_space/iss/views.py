@@ -8,7 +8,7 @@ def iss_crew_api():
     callSource = {"call_source": "iss_crew_names"}
     issCrewDataResult = make_iss_api_call(**callSource)
 
-    issCrewDataString = json.dumps(issCrewDataResult.json) #save json as string
+    issCrewDataString = json.dumps(issCrewDataResult.json()) #save json as string
     #save data to iss_crew model
     iss_crew_model.objects.create(iss_crew_json=issCrewDataString)
 
