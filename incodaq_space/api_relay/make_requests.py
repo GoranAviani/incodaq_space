@@ -9,7 +9,6 @@ def retrieve_iss_crew_names(**kwargs):
         return "error", "status code: {},error: {}".format(status_code, e)
     except requests.exceptions.RequestException as e:
         return "error", "RequestException: {}".format(e)
-        # catastrophic error. bail.
     #finally: ?
     return "succes", result
 
@@ -31,7 +30,8 @@ def make_iss_api_call(**kwargs):
     if result_status == "success":
         return result
     else:
-        api_errors.error("{}".format(issCrewDataResult))
+        api_errors.error("{}".format(result))
+        #TODO Retry a call?
 
 
     if call_source == "iss_location_now":
