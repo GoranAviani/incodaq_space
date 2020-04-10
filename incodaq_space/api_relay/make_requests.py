@@ -7,11 +7,10 @@ def retrieve_iss_crew_names(**kwargs):
         result.raise_for_status()
     except requests.exceptions.HTTPError as e:
         status_code = result.status_code
-        return "error", "status code: {},error: {}".format(status_code, e)
+        api_errors.error("{}".format("status code: {},error: {}".format(status_code, e)))
     except requests.exceptions.RequestException as e:
-        return "error", "RequestException: {}".format(e)
-    #finally: ?
-    return "success", result
+        api_errors.error("{}".format(e))
+    return result
 
 def retrieve_iss_location_now(**kwargs):
     try:
@@ -19,11 +18,10 @@ def retrieve_iss_location_now(**kwargs):
         result.raise_for_status()
     except requests.exceptions.HTTPError as e:
         status_code = result.status_code
-        return "error", "status code: {},error: {}".format(status_code, e)
+        api_errors.error("{}".format( "status code: {},error: {}".format(status_code, e)))
     except requests.exceptions.RequestException as e:
-        return "error", "RequestException: {}".format(e)
-    # finally: ?
-    return "success", result
+        api_errors.error("{}".format(e))
+    return result
 
 def make_iss_api_call(**kwargs):
     api_functions = {
@@ -35,9 +33,6 @@ def make_iss_api_call(**kwargs):
     except KeyError as e:
         api_errors.error("{}".format("Location: make_iss_api_call. Field producing error: {}" .format(e)))
 
-    result_status, result = api_functions[call_source](**kwargs)
-    if result_status == "success":
-        return result
-    else:
-        api_errors.error("{}".format(result))
-        #TODO Retry a call?
+    #returns result object if response status code is 200
+    result = api_functions[call_source](**kwargs)
+    return result
