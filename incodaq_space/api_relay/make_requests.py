@@ -10,7 +10,8 @@ def retrieve_iss_crew_names(**kwargs):
         api_errors.error("{}".format("status code: {},error: {}".format(status_code, e)))
     except requests.exceptions.RequestException as e:
         api_errors.error("{}".format(e))
-    return result
+    else:
+        return result
 
 def retrieve_iss_location_now(**kwargs):
     try:
@@ -21,7 +22,8 @@ def retrieve_iss_location_now(**kwargs):
         api_errors.error("{}".format( "status code: {},error: {}".format(status_code, e)))
     except requests.exceptions.RequestException as e:
         api_errors.error("{}".format(e))
-    return result
+    else:
+        return result
 
 def make_iss_api_call(**kwargs):
     api_functions = {
@@ -32,7 +34,7 @@ def make_iss_api_call(**kwargs):
         call_source = kwargs["call_source"]
     except KeyError as e:
         api_errors.error("{}".format("Location: make_iss_api_call. Field producing error: {}" .format(e)))
-
-    #returns result object if response status code is 200
-    result = api_functions[call_source](**kwargs)
-    return result
+    else:
+        #returns result object if response status code is 200
+        result = api_functions[call_source](**kwargs)
+        return result
