@@ -7,7 +7,7 @@ api_logs = logging.getLogger("api_logs")
 
 #Handlers level
 api_errors.setLevel(logging.ERROR)
-api_errors.setLevel(logging.INFO)
+api_logs.setLevel(logging.INFO)
 
 #Handlers
 api_errors_handler = logging.FileHandler('logs/api_errors.log')
