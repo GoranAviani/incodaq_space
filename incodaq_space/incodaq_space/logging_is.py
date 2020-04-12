@@ -10,8 +10,8 @@ api_errors.setLevel(logging.ERROR)
 api_errors.setLevel(logging.INFO)
 
 #Handlers
-api_errors_handler = logging.FileHandler('api_errors.log')
-api_logs_handler = logging.FileHandler('api_logs.log')
+api_errors_handler = logging.FileHandler('logs/api_errors.log')
+api_logs_handler = logging.FileHandler('logs/api_logs.log')
 
 #Create formatters and add them to handlers
 error_format = logging.Formatter('%(asctime)s - %(message)s')
