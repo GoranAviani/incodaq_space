@@ -1,8 +1,10 @@
 import requests
-from incodaq_space.logging_is import api_errors
+#from incodaq_space.logging_is import api_errors, api_logs
+from incodaq_space.incodaq_space.logging_is import api_errors, api_logs
 
 def retrieve_iss_crew_names(**kwargs):
     try:
+        #api_logs.info("{}: ".format("Function retrieve_iss_crew_names, "))
         result = requests.get("http://api.open-notify.org/astros.json")
         result.raise_for_status()
     except requests.exceptions.HTTPError as e:
