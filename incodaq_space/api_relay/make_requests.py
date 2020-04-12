@@ -1,11 +1,12 @@
 import requests
 #from incodaq_space.logging_is import api_errors, api_logs
 from incodaq_space.incodaq_space.logging_is import api_errors, api_logs
+from incodaq_space.incodaq_space.constants import ASTRONAUTS_IN_SPACE_URL, ISS_LOCATION_URL
 
 def retrieve_iss_crew_names(**kwargs):
     try:
         #api_logs.info("{}: ".format("Function retrieve_iss_crew_names, "))
-        result = requests.get("http://api.open-notify.org/astros.json")
+        result = requests.get(ASTRONAUTS_IN_SPACE_URL)
         result.raise_for_status()
     except requests.exceptions.HTTPError as e:
         status_code = result.status_code
@@ -17,7 +18,7 @@ def retrieve_iss_crew_names(**kwargs):
 
 def retrieve_iss_location_now(**kwargs):
     try:
-        result = requests.get("http://api.open-notify.org/iss-now.json")
+        result = requests.get(ISS_LOCATION_URL)
         result.raise_for_status()
     except requests.exceptions.HTTPError as e:
         status_code = result.status_code
