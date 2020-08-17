@@ -13,7 +13,7 @@ def iss_crew_api():
 
 def iss_location_api():
     iss_location_parameters = {"call_source": "iss_location_now"}
-    issLocationNowResult = make_iss_api_call(**iss_location_parameters)
-    issLocationNowString = json.dumps(issLocationNowResult.json()) #save json as string
+    iss_location_api_response = make_iss_api_call(**iss_location_parameters)
+    iss_locatio_data = json.dumps(iss_location_api_response.json()) #save json as string
     #save data to iss_crew model
-    iss_location_now_model.objects.create(iss_location_now_json= issLocationNowString)
+    iss_location_now_model.objects.create(iss_location_now_json= iss_locatio_data)
