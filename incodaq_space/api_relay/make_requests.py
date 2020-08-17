@@ -54,17 +54,3 @@ def retrieve_iss_location_now():
             "Api response: {}: Url: {}, result: {}".format("Function retrieve_iss_location_now", ASTRONAUTS_IN_SPACE_URL,
                                                            result.json()))
         return result
-
-def make_iss_api_call(**kwargs):
-    api_functions = {
-        "iss_crew_names": retrieve_iss_crew_names,
-        "iss_location_now": retrieve_iss_location_now,
-    }
-    try:
-        call_source = kwargs["call_source"]
-    except KeyError as e:
-        api_errors.error("{}".format("Location: make_iss_api_call. Field producing error: {}" .format(e)))
-    else:
-        #returns result object if response status code is 200
-        result = api_functions[call_source](**kwargs)
-        return result
