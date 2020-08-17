@@ -3,7 +3,7 @@ import requests
 from incodaq_space.logging_is import api_errors, api_logs
 from incodaq_space.constants import ASTRONAUTS_IN_SPACE_URL, ISS_LOCATION_URL
 
-def retrieve_iss_crew_names(**kwargs):
+def retrieve_iss_crew_names():
     try:
         api_logs.info("Api request: {}: Url: {}".format("Function retrieve_iss_crew_names", ASTRONAUTS_IN_SPACE_URL))
         result = requests.get(ASTRONAUTS_IN_SPACE_URL)
@@ -29,7 +29,7 @@ def retrieve_iss_crew_names(**kwargs):
                                                            result.json()))
         return result
 
-def retrieve_iss_location_now(**kwargs):
+def retrieve_iss_location_now():
     try:
         api_logs.info("Api request: {}: Url: {}".format("Function retrieve_iss_location_now", ASTRONAUTS_IN_SPACE_URL))
         result = requests.get(ISS_LOCATION_URL)
