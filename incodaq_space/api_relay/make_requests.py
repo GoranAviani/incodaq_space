@@ -5,7 +5,7 @@ from incodaq_space.constants import ASTRONAUTS_IN_SPACE_URL, ISS_LOCATION_URL
 
 def process_api_response(name_of_call_function, result, url):
     """
-    
+
     :param name_of_call_function:
     :param result:
     :param url:
