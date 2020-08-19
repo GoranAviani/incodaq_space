@@ -4,6 +4,13 @@ from incodaq_space.logging_is import api_errors, api_logs
 from incodaq_space.constants import ASTRONAUTS_IN_SPACE_URL, ISS_LOCATION_URL
 
 def process_api_response(name_of_call_function, result, url):
+    """
+    
+    :param name_of_call_function:
+    :param result:
+    :param url:
+    :return:
+    """
     try:
         result.raise_for_status()
     except requests.exceptions.HTTPError as e:
@@ -30,6 +37,10 @@ def process_api_response(name_of_call_function, result, url):
         return result
 
 def fetch_iss_crew_names():
+    """
+
+    :return:
+    """
     name_of_call_function = 'fetch_iss_crew_names'
     api_logs.info("Api request: {}: Url: {}".format(name_of_call_function, ASTRONAUTS_IN_SPACE_URL))
     result = requests.get(ASTRONAUTS_IN_SPACE_URL)
@@ -38,9 +49,13 @@ def fetch_iss_crew_names():
     return result
 
 def fetch_iss_location():
+    """
+
+    :return:
+    """
     name_of_call_function = 'fetch_iss_location'
     api_logs.info("Api request: {}: Url: {}".format("Function fetch_iss_location", ASTRONAUTS_IN_SPACE_URL))
     result = requests.get(ISS_LOCATION_URL)
     result = process_api_response(name_of_call_function, result, ISS_LOCATION_URL)
-    
+
     return result
