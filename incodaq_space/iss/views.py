@@ -14,4 +14,4 @@ def iss_location_api():
     iss_location_api_response = fetch_iss_location()
     iss_locatio_data = json.dumps(iss_location_api_response.json()) #save json as string
     #save data to iss_crew model
-    iss_location_now_model.objects.create(iss_location_now_json= iss_locatio_data)
+    iss_location_now_model.objects.create(iss_location_now_json=iss_locatio_data)
