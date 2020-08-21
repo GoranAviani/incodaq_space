@@ -1,7 +1,8 @@
 import requests
 #from incodaq_space.logging_is import api_errors, api_logs
 from incodaq_space.logging_is import api_errors, api_logs
-from incodaq_space.constants import ASTRONAUTS_IN_SPACE_URL, ISS_LOCATION_URL
+from incodaq_space.constants import ASTRONAUTS_IN_SPACE_URL, ISS_LOCATION_URL, NASA_ASTEROID_LOCATION
+from secrets.passwords import NASA_KEY
 
 def process_api_response(name_of_call_function, result, url):
     """
@@ -56,5 +57,13 @@ def fetch_iss_location():
     api_logs.info("Api call. Function: {}: Url: {}".format(name_of_call_function, ASTRONAUTS_IN_SPACE_URL))
     result = requests.get(ISS_LOCATION_URL)
     result = process_api_response(name_of_call_function, result, ISS_LOCATION_URL)
+
+    return result
+
+def fetch_asteroid_location():
+    name_of_call_function = 'fetch_asteroid_location'
+    api_logs.info("Api call. Function: {}: Url: {}".format(name_of_call_function, ASTRONAUTS_IN_SPACE_URL))
+    result = requests.get(NASA_ASTEROID_LOCATION .format('2020-08-21', '2020-08-21', NASA_KEY))
+    result = process_api_response(name_of_call_function, result, NASA_ASTEROID_LOCATION)
 
     return result
