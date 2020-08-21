@@ -2,7 +2,7 @@ import requests
 #from incodaq_space.logging_is import api_errors, api_logs
 from incodaq_space.logging_is import api_errors, api_logs
 from incodaq_space.constants import ASTRONAUTS_IN_SPACE_URL, ISS_LOCATION_URL, NASA_ASTEROID_LOCATION
-from ..secrets.passwords import NASA_KEY
+from secrets.passwords import NASA_KEY
 
 def process_api_response(name_of_call_function, result, url):
     """
