@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
-from iss.views import iss_crew_api, iss_location_api
-from iss.models import iss_crew_model, iss_location_now_model
+from ..iss.views import iss_crew_api, iss_location_api, asteroid_location_api
+from ..iss.models import iss_crew_model, iss_location_now_model
 import json
 #from datetime import datetime, timedelta
 
@@ -30,6 +30,7 @@ def index(request):
 def iss(request):
     iss_crew_api() #TODO to be moved to clery
     iss_location_api()
+
 
 
 

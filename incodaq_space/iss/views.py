@@ -20,3 +20,6 @@ def iss_location_api():
     iss_locatio_data = api_response_to_string(iss_location_api_response)
     #save data to iss_crew model
     iss_location_now_model.objects.create(iss_location_now_json=iss_locatio_data)
+
+def asteroid_location_api():
+    pass
