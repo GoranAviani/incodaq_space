@@ -22,4 +22,8 @@ def iss_location_api():
     iss_location_now_model.objects.create(iss_location_now_json=iss_locatio_data)
 
 def asteroid_location_api():
-    pass
+    asteroid_location_api_response = fetch_asteroid_location()
+    # save json as string
+    iss_crew_data = api_response_to_string(iss_iss_crew_api_response)
+    # save data to iss_crew model
+    iss_crew_model.objects.create(iss_crew_json=iss_crew_data)
