@@ -63,7 +63,7 @@ def fetch_iss_location():
 def fetch_asteroid_location():
     name_of_call_function = 'fetch_asteroid_location'
     api_logs.info("Api call. Function: {}: Url: {}".format(name_of_call_function, ASTRONAUTS_IN_SPACE_URL))
-    result = requests.get(NASA_ASTEROID_LOCATION .format('2020-08-21', '2020-08-21', NASA_KEY))
+    result = requests.get(NASA_ASTEROID_LOCATION .format('2020-08-21', '2020-08-28', NASA_KEY))
     result = process_api_response(name_of_call_function, result, NASA_ASTEROID_LOCATION)
 
     return result
