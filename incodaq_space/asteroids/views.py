@@ -1,8 +1,7 @@
 from django.shortcuts import render
-#from .models import asteroids_location_model
 from api_relay.make_requests import fetch_asteroid_location
 from incodaq_space.secondary_calculations import api_response_to_string
-
+from .models import asteroids_location_model
 
 # Create your views here.
 def asteroid_location_api():
