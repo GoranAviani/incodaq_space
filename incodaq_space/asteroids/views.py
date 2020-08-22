@@ -21,4 +21,4 @@ def get_asteroid_info():
       #asteroid_data = last_asteroid_record["people"]
       return last_asteroid_record
    except:
-      return [{'name': "Something went wrong with fetching asteroids #TODO to be moved to celerySS crew data", "craft": ""}]
+      return [{'asteroid_data': "Something went wrong with fetching asteroids #TODO to be moved to celerySS crew data"}]
