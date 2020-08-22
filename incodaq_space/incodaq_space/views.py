@@ -27,13 +27,13 @@ def index(request):
 
     return render(request,'index.html')
 
+def asteroids(request):
+    asteroid_location_api()  # TODO to be moved to celery
+
 
 def iss(request):
     iss_crew_api() #TODO to be moved to celery
     iss_location_api() #TODO to be moved to celery
-    asteroid_location_api() #TODO to be moved to celery
-
-
 
 
     iss_crew_info = get_iss_crew_info()
