@@ -13,7 +13,7 @@
     </facet>
   </component>
   <component name="NewModuleRootManager">
-    <content url="file://$MODULE_DIR$" />
+    <content url="file://$MODULE_DIR$/incodaq_space" />
     <orderEntry type="jdk" jdkName="Python 3.8 (incodaq_space)" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
   </component>
