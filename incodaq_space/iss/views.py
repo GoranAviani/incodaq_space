@@ -2,6 +2,7 @@ from django.shortcuts import render
 from api_relay.make_requests import fetch_iss_crew_names, fetch_iss_location, fetch_asteroid_location
 # Create your views here.
 from .models import iss_crew_model, iss_location_now_model
+from ..asteroids.models import asteroids_location_model
 import json
 
 def api_response_to_string(api_response):
