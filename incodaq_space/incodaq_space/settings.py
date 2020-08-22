@@ -41,6 +41,7 @@ INSTALLED_APPS = [
 
     'iss.apps.IssConfig',
     'api_relay.apps.ApiRelayConfig',
+    'asteroids.apps.AsteroidsConfig'
 ]
 
 MIDDLEWARE = [

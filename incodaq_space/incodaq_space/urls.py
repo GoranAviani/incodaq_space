@@ -21,4 +21,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.index, name='index'),
     path('iss', views.iss, name='iss'),
+    path('asteroids', views.asteroids, name='asteroids')
 ]

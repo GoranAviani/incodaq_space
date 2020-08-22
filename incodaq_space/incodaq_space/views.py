@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
-from iss.views import iss_crew_api, iss_location_api, asteroid_location_api
+from iss.views import iss_crew_api, iss_location_api
+from asteroids.views import asteroid_location_api, get_asteroid_info
 from iss.models import iss_crew_model, iss_location_now_model
 import json
 #from datetime import datetime, timedelta
@@ -11,7 +12,7 @@ def get_iss_crew_info():
       IssCrewData = lastISSCrewDataRec["people"]
       return IssCrewData
    except:
-      return [{'name': "Something went wrong with fetching ISS crew data", "craft": ""}]
+      return [{'name': "Something went wrong with fetching I#TODO to be moved to celerySS crew data", "craft": ""}]
 
 def get_iss_location_now_info():
    try:
@@ -26,17 +27,24 @@ def index(request):
 
     return render(request,'index.html')
 
+def asteroids(request):
+    asteroid_location_api()  # TODO to be moved to celery
+
+    asteroid_info = get_asteroid_info()
+
+    print(asteroid_info)
+    return render(request, 'asteroids.html',
+                  {'asteroid_info': asteroid_info})
+
 
 def iss(request):
-    iss_crew_api() #TODO to be moved to clery
-    iss_location_api()
-    asteroid_location_api()
-
-
+    iss_crew_api() #TODO to be moved to celery
+    iss_location_api() #TODO to be moved to celery
 
 
     iss_crew_info = get_iss_crew_info()
     iss_location_now_info = get_iss_location_now_info()
+
     print(iss_crew_info)
     print(iss_location_now_info)
     return render(request, 'iss.html',
