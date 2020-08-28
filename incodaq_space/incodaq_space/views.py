@@ -34,9 +34,8 @@ def asteroids(request):
     asteroid_info = get_asteroid_info()
 
     print(asteroid_info)
-
-    asteroid_info = process_asteroid_info(asteroid_info
-                                          )
+    #TODO
+   # asteroid_info = process_asteroid_info(asteroid_info)
     return render(request, 'asteroids.html',
                   {'asteroid_info': asteroid_info})
 
